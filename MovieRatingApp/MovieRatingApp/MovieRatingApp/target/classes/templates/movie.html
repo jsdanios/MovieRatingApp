@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title>Movie</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="..main/custom.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="row navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+
+                    </div>
+                    <div id="navbar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/movie">Add New Movie</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li sec:authorize="isAuthenticated()"><a href="/logout">Log out</a></li>
+                            <li sec:authorize="!isAuthenticated()"><a href="/login">Log in</a></li>
+                            <li><a href="/register">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <h2>Add New Movie</h2>
+
+            <div>
+                <form action="#" th:action="@{/movie}" th:object="${movie}" method="post">
+                    <p>Name: <input type="text" th:field="*{name}" /></p>
+                    <p>Year: <input type="text" th:field="*{year}" /></p>
+                    <p>Director: <input type="text" th:field="*{director}" /></p>
+                    <p>Image url: <input type="text" th:field="*{image}" /></p>
+                    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
